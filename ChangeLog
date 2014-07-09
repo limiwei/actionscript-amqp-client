@@ -1,0 +1,27 @@
+09/07/2012
+
+Channel.as
+    Fixed channel not automatically opening after connection.close method was recieve.
+
+Connection.as
+    Changed product and version from the parameters object to static const
+    Used the protocol string from paramters. (was hardcoded to 0_9_1)
+
+09/11/2012
+
+
+Connection.as
+    Added STATE_OPEN and STATE_CLOSED
+    Added function to set state which fires events for CONNECTION_STATE_READYand CONNECTION_STATE_CLOSED
+    removed function to reset channel when connection closes
+    added event listners to new channels for CONNECTION_STATE_READYand CONNECTION_STATE_CLOSED
+    added isReady() function which return current STATE
+
+ConnectionEvent.as
+    added CONNECTION_STATE_READY
+    added CONNECTION_STATE_CLOSED
+
+Channel.as
+    added event handler for CONNECTION_STATE_READY which will process the queue
+    added event handler for CONNECTION_STATE_CLOSED which will call reset channel
+    added check for isReady() in onSendQueuedItem, which will return if the connection is not ready
